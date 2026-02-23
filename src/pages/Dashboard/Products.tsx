@@ -11,9 +11,8 @@ const Products = () => {
   const [products, setProducts] = useState([])
 
   useEffect(() => {
-    instance().get("/products").then(res => setProducts(res.data.splica()))
+    instance().get("/products").then(res => setProducts(res.data.splice(0,30)))
   }, [])
-  console.log(search);
 
   return (
     <div className="h-[95%] bg-white/5 backdrop-blur-xl ring-1 ring-white/10 shadow-[0_10px_40px_rgba(0,0,0,0.45)]">
