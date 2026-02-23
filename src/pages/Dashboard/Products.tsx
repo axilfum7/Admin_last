@@ -1,9 +1,19 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Input, Select } from "../../components"
 import Button from "../../components/Button"
+import { instance } from "../../Hooks"
+import type { ProductType } from "../../@types"
+import ProductCard from "../../components/ProductCard"
 
 const Products = () => {
-  const [categoryId, setCategoryId] = useState<string>("")
+  const [search, setSearch] = useState("")
+  const [categoryId, setCategoryId] = useState<string | number>("")
+  const [products, setProducts] = useState([])
+
+  useEffect(() => {
+    instance().get("/products").then(res => setProducts(res.data.splica()))
+  }, [])
+  console.log(search);
 
   return (
     <div className="h-[95%] bg-white/5 backdrop-blur-xl ring-1 ring-white/10 shadow-[0_10px_40px_rgba(0,0,0,0.45)]">
@@ -12,10 +22,13 @@ const Products = () => {
 
       <div className="flex items-center justify-between p-4">
         <div className="flex gap-5">
-          <Input extraClass="border !px-3 !w-75" name="search" placeholder="Qidirish" type="text"/>
-          <Select  URL="/categories"/>
+          <Input onChange={e => setSearch(e.target.value)} extraClass="border !px-3 !w-75" name="search" placeholder="Qidirish" type="text"/>
+          <Select value={categoryId} setValue={setCategoryId} URL="/categories"/>
         </div>
         <Button showBg={false} extraClass="!w-[100px]" type="button">Yaratish</Button>
+      </div>
+      <div className="relative grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 p-6">
+      {products.map((item:ProductType) => <ProductCard key={item.id} item={item}/>)}
       </div>
     </div>
   )

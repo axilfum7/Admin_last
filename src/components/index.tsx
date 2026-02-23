@@ -5,5 +5,6 @@ import Button from "./Button";
 import Modal from "./Modal";
 import IconButton from "./IconButton";
 import Select from "./Select";
+import ProductCard from "./ProductCard";
 
-export {PATH, Input, Loading,Button, Modal, IconButton, Select}
+export {PATH, Input, Loading,Button, Modal, IconButton, Select, ProductCard}
