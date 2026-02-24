@@ -14,7 +14,7 @@ const DashboardRoute = () => {
     return (
         <div className="flex">
             <Sitebar/>
-            <div className="w-[78%] h-screen relative overflow-y-auto ">
+            <div className="w-[78%] relative h-screen overflow-y-auto">
                 <Header/>
                 <Routes>{routeList.map(item => <Route key={item.id} path={item.path} element={item.element} />)}</Routes>
             </div>
