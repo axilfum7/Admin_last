@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom"
 import type { ProductType } from "../@types"
 import { FiEdit2, FiTrash2 } from "react-icons/fi"
 
@@ -6,8 +7,9 @@ interface Props {
 }
 
 const ProductCard = ({ item }: Props) => {
+  const navigate = useNavigate()
   return (
-    <div className="relative overflow-hidden rounded-2xl bg-white/5 backdrop-blur-xl ring-1 ring-white/10 hover:ring-orange-400/40 transition-all duration-300 p-4 group">
+    <div onClick={() => navigate(`${item.id}`)} className="relative overflow-hidden rounded-2xl bg-white/5 backdrop-blur-xl ring-1 ring-white/10 hover:ring-orange-400/40 transition-all duration-300 p-4 group">
 
       {/* Image */}
       <div className=" group relative mx-auto max-w-7xl px-6 py-10">

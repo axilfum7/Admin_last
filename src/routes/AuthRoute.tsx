@@ -2,7 +2,6 @@ import { Route, Routes } from "react-router-dom"
 import { PATH } from "../components"
 import { LoginHome, Register, Login, Notfound } from "../pages"
 
-
 const LoginRoute = () => {
     const routeList = [
         {id:1, path:PATH.home,element:<LoginHome/>},

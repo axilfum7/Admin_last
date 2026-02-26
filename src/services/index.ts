@@ -21,3 +21,24 @@ export const LoginFn = (data:{email:string, password:string}, setLoading:Dispatc
       },1000)
     }).catch(() => toast.error("Xatolik bor!")).finally(() => setLoading(false))
 }
+export const GetById = (URL:string, setValue:Dispatch<SetStateAction<any>>) => {
+  instance().get(URL).then(res => {
+      setValue(res.data);
+  })
+}
+export const DeleteFn = (URL:string, setLoading:Dispatch<SetStateAction<boolean>>,setDelModal:Dispatch<SetStateAction<boolean>>, toastTitle:string,navigate:NavigateFunction) => {
+    instance().delete(URL).then(() => {
+      setLoading(false)
+      setDelModal(false)
+      toast.success(toastTitle)
+      setTimeout(() => navigate(-1), 1000)
+    })
+}
+export const CrudFn = (id:string | undefined, URL:string, data:any, setLoading:Dispatch<SetStateAction<boolean>>, navigate:NavigateFunction, toastTitle:string) => {
+  instance()[id ? "put" : "post"](`${URL}/${id ? id : ""}`, data).then(() => {
+     toast.success(toastTitle)
+     setLoading(false)
+     setTimeout(() => navigate(-1), 1000)
+  })
+}
+

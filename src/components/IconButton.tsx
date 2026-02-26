@@ -2,19 +2,18 @@ import { type FC, type MouseEventHandler, type ReactNode } from "react";
 
 interface IconButtonType {
   children: ReactNode;
-  onClick: MouseEventHandler<HTMLButtonElement>;
+  onClick: MouseEventHandler<HTMLButtonElement>,
+  extraClass?:string
 }
 
-const IconButton: FC<IconButtonType> = ({ children, onClick }) => {
+const IconButton: FC<IconButtonType> = ({ children, onClick, extraClass }) => {
   return (
     <button
       type="button"
       onClick={onClick}
-      className="grid size-8 place-items-center rounded-lg hover:bg-white/10 text-white/70 hover:text-white transition"
+      className={`grid ${extraClass} size-8 place-items-center rounded-lg hover:bg-white/10 text-white/70 hover:text-white transition`}
       aria-label="Close"
-    >
-      {children}
-    </button>
+    >{children}</button>
   );
 };
 

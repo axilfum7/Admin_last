@@ -6,14 +6,16 @@ interface SelectType {
     URL?: string,
     customList?: any[],
     setValue: Dispatch<SetStateAction<string | number>>,
-    value: string | number
+    value: string | number,
+    setLoading?:Dispatch<SetStateAction<boolean>>
 }
 
-const Select: FC<SelectType> = ({ extraClass, URL, customList, setValue, value }) => {
+const Select: FC<SelectType> = ({ extraClass, URL, customList, setValue, value, setLoading }) => {
     const [list, setList] = useState(URL ? [] : customList)
 
     function handleSelectChange(e: ChangeEvent<HTMLSelectElement>) {
-        setValue(e.target.value);
+        if(setLoading) setLoading(true)
+        setValue(e.target.value == "all" ? "" : e.target.value);
     }
 
     useEffect(() => {

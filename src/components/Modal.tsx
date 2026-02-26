@@ -5,8 +5,7 @@ import { CloseIcon } from "../assets/icons";
 type ModalProps = { open: boolean; onClose: () => void; title?: string; children: React.ReactNode;
 };
 
-const Modal = ({ open, onClose, title = "Modal", children,
-}: ModalProps) => {
+const Modal = ({ open, onClose, title = "Modal", children}: ModalProps) => {
 
   useEffect(() => {
     const handleEsc = (e: KeyboardEvent) => {
