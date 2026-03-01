@@ -13,7 +13,9 @@ import CategoriesCrud from "./Dashboard/Category/CategoriesCrud"
 import CategoriesMore from "./Dashboard/Category/CategoriesMore"
 
 import Users from "./Dashboard/Users/Users"
+import UserCrud from "./Dashboard/Users/UsersCrud"
+import UserMore from "./Dashboard/Users/UsersMore"
 
 import Notfound from "./Notfound"
 
-export {LoginHome, Login, Register, DashboardHome, Products, Category, Users, Notfound, ProductsCrud, ProductsMore, CategoriesCrud, CategoriesMore}
+export {LoginHome, Login, Register, DashboardHome, Products, Category, Users, Notfound, ProductsCrud, ProductsMore, CategoriesCrud, CategoriesMore, UserCrud, UserMore}

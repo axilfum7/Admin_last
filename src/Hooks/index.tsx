@@ -1,4 +1,4 @@
 import instance from "./instance";
-import debounce from "./debounce";
+import useDebounce from "./debounce";
 
-export {instance, debounce}
+export {instance, useDebounce}

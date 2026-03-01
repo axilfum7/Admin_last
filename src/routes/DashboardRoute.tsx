@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom"
-import { Category, DashboardHome, Notfound, Products, ProductsCrud, ProductsMore, Users, CategoriesCrud } from "../pages"
+import { Category, DashboardHome, Notfound, Products, ProductsCrud, ProductsMore, Users, UserMore, UserCrud, CategoriesCrud } from "../pages"
 import { PATH } from "../components"
 import { Header, Sitebar } from "../modules"
 
@@ -9,12 +9,15 @@ const DashboardRoute = () => {
         { id: 2, path: PATH.products, element: <Products /> },
         { id: 3, path: PATH.category, element: <Category /> },
         { id: 4, path: PATH.users, element: <Users /> },
-        { id: 5, path: PATH.notFound, element: <Notfound /> },
-        { id: 6, path: PATH.productsMore, element: <ProductsMore /> },
-        { id: 7, path: PATH.productsCreate, element: <ProductsCrud /> },
-        { id: 8, path: PATH.productsUpdate, element: <ProductsCrud /> },
-        { id: 9, path: PATH.categoriesCreate, element: <CategoriesCrud /> },
-        { id: 10, path: PATH.categoriesUpdate, element: <CategoriesCrud /> },
+        { id: 5, path: PATH.usersMore, element: <UserMore /> },
+        { id: 6, path: PATH.usersCreate, element: <UserCrud /> },
+        { id: 7, path: PATH.usersUpdate, element: <UserCrud /> },
+        { id: 8, path: PATH.notFound, element: <Notfound /> },
+        { id: 9, path: PATH.productsMore, element: <ProductsMore /> },
+        { id: 10, path: PATH.productsCreate, element: <ProductsCrud /> },
+        { id: 11, path: PATH.productsUpdate, element: <ProductsCrud /> },
+        { id: 12, path: PATH.categoriesCreate, element: <CategoriesCrud /> },
+        { id: 13, path: PATH.categoriesUpdate, element: <CategoriesCrud /> },
     ]
     return (
         <div className="flex">

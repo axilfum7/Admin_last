@@ -8,5 +8,6 @@ import Select from "./Select";
 import ProductCard from "./ProductCard";
 import CategoryCard from "./CategoryCard";
 import UsersCard from "./UsersCard";
+import MiniButton from "./miniButton";
 
-export {PATH, Input, Loading,Button, Modal, IconButton, Select, ProductCard, CategoryCard, UsersCard}
+export {PATH, Input, Loading,Button, Modal, IconButton, Select, ProductCard, CategoryCard, UsersCard, MiniButton}

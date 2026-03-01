@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { Input, Loading, Select, ProductCard, PATH } from "../../../components"
 import Button from "../../../components/Button"
-import { debounce, instance } from "../../../Hooks"
+import { useDebounce, instance } from "../../../Hooks"
 import type { ProductType } from "../../../@types"
 import { useNavigate } from "react-router-dom"
 
@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom"
 const Products = () => {
   const navigate = useNavigate()
   const [search, setSearch] = useState("")
-  const title = debounce(search, 1000)
+  const title = useDebounce(search, 1000)
   const [categoryId, setCategoryId] = useState<string | number>("")
 
   const [loading, setLoading] = useState<boolean>(true)

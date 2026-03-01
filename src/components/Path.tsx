@@ -13,6 +13,9 @@ const PATH = {
     categoriesCreate: "/categories/create",
     categoriesUpdate: "/categories/:id/update",
     users:"/users",
+    usersMore: "/users/:id",
+    usersCreate: "/users/create",
+    usersUpdate: "/users/:id/update",
     notFound:"*"
 }
 export default PATH

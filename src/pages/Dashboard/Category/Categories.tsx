@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react"
 import { Input, Loading, PATH, CategoryCard } from "../../../components"
 import Button from "../../../components/Button"
-import { debounce, instance } from "../../../Hooks"
+import { useDebounce, instance } from "../../../Hooks"
 import type { CategoryType } from "../../../@types"
 import { useNavigate } from "react-router-dom"
 
 const Categories = () => {
   const navigate = useNavigate()
   const [search, setSearch] = useState("")
-  const name = debounce(search, 1000)
+  const name = useDebounce(search, 1000)
 
 
   const [loading, setLoading] = useState<boolean>(true)

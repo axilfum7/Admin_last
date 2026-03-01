@@ -25,8 +25,8 @@ const UsersCard: FC<UsersCardProps> = ({ u }) => {
           {/* Avatar */}
           <div className="relative shrink-0">
             <img
-              src={u.avatar}
-              alt={u.name}
+              src={u.image}
+              alt={u.fullname}
               className="w-14 h-14 rounded-2xl object-cover ring-1 ring-white/10 bg-white/5"
               onError={(e) => {
                 e.currentTarget.src = "https://placehold.co/120x120?text=User";
@@ -37,7 +37,7 @@ const UsersCard: FC<UsersCardProps> = ({ u }) => {
 
           {/* Name & Email */}
           <div className="min-w-0">
-            <p className="text-white font-semibold truncate">{u.name}</p>
+            <p className="text-white font-semibold truncate">{u.fullname}</p>
             <div className="mt-1 flex items-center gap-1 text-[11px] text-white/55 truncate">
               <FiMail className="shrink-0" />
               <span className="truncate">{u.email}</span>
@@ -51,7 +51,7 @@ const UsersCard: FC<UsersCardProps> = ({ u }) => {
             <p className="text-[11px] text-white/45">Role</p>
             <span
               className={`mt-2 inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-[11px] font-medium ring-1 ${
-                u.role === "admin"
+                u.role === "Admin"
                   ? "bg-white/10 text-white ring-white/15"
                   : "bg-white/5 text-white/80 ring-white/10"
               }`}
