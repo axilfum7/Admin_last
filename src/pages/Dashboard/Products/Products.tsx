@@ -13,13 +13,13 @@ const Products = () => {
   const [categoryId, setCategoryId] = useState<string | number>("")
 
   const [loading, setLoading] = useState<boolean>(true)
-  const [products, setProducts] = useState([])
+  const [products, setProducts] = useState<ProductType[]>([])
 
 
   useEffect(() => {
     instance().get("/products", {
       params: { title, categoryId }
-    }).then(res => setProducts(res.data.splice(0, 12))).finally(() => setLoading(false))
+    }).then(res => setProducts(res.data.slice(0, 12))).finally(() => setLoading(false))
   }, [title, categoryId])
 
   return (

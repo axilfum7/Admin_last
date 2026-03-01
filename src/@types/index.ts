@@ -1,10 +1,11 @@
-export interface CategoryType{
-    id: number;
-    name: string;
-    slug: string;
-    image: string;
-    creationAt: string;
-    updatedAt: string;
+export interface CategoryType {
+  id: number;
+  name: string;
+  slug: string;
+  image?: string;
+  description?: string; 
+  creationAt?: string;
+  updatedAt?: string;
 }
 export interface ProductType{
     id: number,
@@ -16,4 +17,15 @@ export interface ProductType{
     images: string[];
     creationAt: string,
     updatedAt: string,
+}
+
+export interface UserType {
+  id: number;
+  fullname: string;
+  email: string;
+  phone?: string;
+  role: "Admin" | "User" | "Shop" | "Super-Admin";
+  image?: string;
+  creationAt?: string;
+  updatedAt?: string;
 }

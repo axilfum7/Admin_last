@@ -12,7 +12,7 @@ const IconButton: FC<IconButtonType> = ({ children, onClick, extraClass }) => {
       type="button"
       onClick={onClick}
       className={`grid ${extraClass} size-8 place-items-center rounded-lg hover:bg-white/10 text-white/70 hover:text-white transition`}
-      aria-label="Close"
+      aria-label="Icon button"
     >{children}</button>
   );
 };
