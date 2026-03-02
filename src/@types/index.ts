@@ -21,11 +21,9 @@ export interface ProductType{
 
 export interface UserType {
   id: number;
-  fullname: string;
+  name: string;
   email: string;
-  phone?: string;
+  password: string;
   role: "Admin" | "User" | "Shop" | "Super-Admin";
-  image?: string;
-  creationAt?: string;
-  updatedAt?: string;
+  avatar?: string;
 }

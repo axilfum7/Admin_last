@@ -43,27 +43,27 @@ const ProductCrud = () => {
       </div>
       <div className="flex justify-center gap-10 mt-6">
         <div className="w-[45%] flex flex-col gap-5">
-          <label>
+          <label className="flex gap-4 items-center"> 
             <span className="text-white pl-2">Mahsulot nomi:</span>
-            <Input value={title} setValue={setTitle} extraClass="border pl-3" type="text" name="title" placeholder="Mahsulot nomini kiriting" />
+            <Input value={title} setValue={setTitle} extraClass="border pl-3" type="text" name="title" placeholder="Mahsulot nomini kiriting" required />
           </label>
-          <label>
+          <label className="flex gap-4 items-center">
             <span className="text-white pl-2">Mahsulot narxi:</span>
-            <Input value={price} setValue={setPrice} extraClass="border pl-3" type="text" name="price" placeholder="Mahsulot narxini kiriting" />
+            <Input value={price} setValue={setPrice} extraClass="border pl-3" type="text" name="price" placeholder="Mahsulot narxini kiriting" required />
           </label>
-          <label>
+          <label className="flex gap-4 items-center">
             <span className="text-white pl-2">Mahsulot haqida:</span>
-            <Input value={description} setValue={setDescription} extraClass="border pl-3" type="text" name="description" placeholder="Mahsulot haqida..." />
+            <Input value={description} setValue={setDescription} extraClass="border pl-3" type="text" name="description" placeholder="Mahsulot haqida..." required />
           </label>
         </div>
         <div className="w-[45%] flex flex-col gap-5">
-          <label>
+          <label className="flex flex-col gap-4">
             <span className="text-white pl-2">Kategoriya tanlang:</span>
-            <Select extraClass="w-full !py-[13px]" value={categoryId} setValue={setCategoryId} URL="/categories" />
+            <Select extraClass="w-full !py-[13px] bg-[#0b1220]!" value={categoryId} setValue={setCategoryId} URL="/categories" />
           </label>
-          <label>
+          <label className="flex gap-4 items-center">
             <span className="text-white pl-2">Mahsulot rasmi:</span>
-            <Input value={images} setValue={setImages} extraClass="border pl-3" type="text" name="images" placeholder="Mahsulot rasmini kiriting" />
+            <Input value={images} setValue={setImages} extraClass="border pl-3" type="text" name="images" placeholder="Mahsulot rasmini kiriting" required />
           </label>
         </div>
       </div>

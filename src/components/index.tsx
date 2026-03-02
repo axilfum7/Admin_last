@@ -8,6 +8,6 @@ import Select from "./Select";
 import ProductCard from "./ProductCard";
 import CategoryCard from "./CategoryCard";
 import UsersCard from "./UsersCard";
-import MiniButton from "./miniButton";
+import MiniButton from "./MiniButton"; // kotta M boladi 
 
 export {PATH, Input, Loading,Button, Modal, IconButton, Select, ProductCard, CategoryCard, UsersCard, MiniButton}

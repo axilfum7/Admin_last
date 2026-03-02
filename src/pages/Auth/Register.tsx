@@ -55,7 +55,7 @@ const Register = () => {
                   <div className="pointer-events-none absolute inset-y-0 left-4 flex items-center opacity-80">
                     <NameIcon />
                   </div>
-                  <Input type="text" name="firstname" placeholder="Ism familiya" />
+                  <Input extraClass="w-full pl-12 pr-2 py-3 bg-transparent text-white placeholder:text-white/35 outline-none" type="text" name="firstname" placeholder="Ism familiya" required />
                   <div className="absolute inset-x-0 bottom-0 h-px bg-[linear-gradient(to_right,transparent,rgba(255,106,0,0.75),rgba(255,46,81,0.65),transparent)] opacity-0 transition group-focus-within:opacity-100" />
                 </div>
               </div>
@@ -66,7 +66,7 @@ const Register = () => {
                   <div className="pointer-events-none absolute inset-y-0 left-4 flex items-center">
                     <EmailIcon />
                   </div>
-                  <Input type="email" name="email" placeholder="misol@gmail.com" />
+                  <Input extraClass="w-full pl-12 pr-2 py-3 bg-transparent text-white placeholder:text-white/35 outline-none" type="email" name="email" placeholder="misol@gmail.com" required />
                   <div className="absolute inset-x-0 bottom-0 h-px bg-[linear-gradient(to_right,transparent,rgba(255,106,0,0.75),rgba(255,46,81,0.65),transparent)] opacity-0 transition group-focus-within:opacity-100" />
                 </div>
               </div>
@@ -77,7 +77,7 @@ const Register = () => {
                   <div className="pointer-events-none absolute inset-y-0 left-4 flex items-center">
                     <PasswordIcon />
                   </div>
-                  <Input type="password" name="password" placeholder="••••••••" />
+                  <Input extraClass="w-full pl-12 pr-4 py-3 bg-transparent text-white placeholder:text-white/35 outline-none"type="password" name="password" placeholder="••••••••" required />
                   <div className="absolute inset-x-0 bottom-0 h-px bg-[linear-gradient(to_right,transparent,rgba(255,106,0,0.75),rgba(255,46,81,0.65),transparent)] opacity-0 transition group-focus-within:opacity-100" />
                 </div>
               </div>

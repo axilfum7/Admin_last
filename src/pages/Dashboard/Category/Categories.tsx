@@ -1,83 +1,98 @@
-import { useEffect, useState } from "react"
-import { Input, Loading, PATH, CategoryCard } from "../../../components"
-import Button from "../../../components/Button"
-import { useDebounce, instance } from "../../../Hooks"
-import type { CategoryType } from "../../../@types"
-import { useNavigate } from "react-router-dom"
-
-const Categories = () => {
-  const navigate = useNavigate()
-  const [search, setSearch] = useState("")
-  const name = useDebounce(search, 1000)
+import { useEffect, useState, type ChangeEvent } from "react";
+import { CategoryCard, Input, PATH } from "../../../components";
+import Button from "../../../components/Button";
+import type { CategoryType} from "../../../@types";
+import { GetById } from "../../../services";
+import { useNavigate } from "react-router-dom";
+import { useDebounce } from "../../../Hooks";
 
 
-  const [loading, setLoading] = useState<boolean>(true)
+const Category = () => {
   const [categories, setCategories] = useState<CategoryType[]>([])
+  const [search, setSearch] = useState<string>("")
+
+  const navigete = useNavigate()
+
+  const debounce = useDebounce(search,1000);
+
+  function changeInput(e:ChangeEvent<HTMLInputElement>){
+    setSearch(e.target.value)
+  }
+
+  const filteredCategories = categories.filter((c: any) => 
+    c.name?.toLowerCase().includes(debounce.trim().toLowerCase())
+  );
 
   useEffect(() => {
-    setLoading(true)
-    instance()
-      .get("/categories", { params: { name } })
-      .then(res => setCategories(res.data.slice(0, 12)))
-      .finally(() => setLoading(false))
-  }, [name])
-
-  const handleDelete = (id: number) => {
-    if (!confirm("Kategoriya o'chirilsinmi?")) return
-
-    setLoading(true)
-    instance()
-      .delete(`/categories/${id}`)
-      .then(() => {
-        setCategories(prev => prev.filter(item => item.id !== id))
-        alert("Kategoriya o'chirildi")
-      })
-      .finally(() => setLoading(false))
-  }  
+    GetById("/categories",setCategories)
+  },[setCategories])
+  
 
   return (
-    <div className="min-h-screen bg-[#0b1220] relative">
-      <div className="absolute inset-0 -z-10 bg-[radial-gradient(900px_circle_at_20%_25%,rgba(255,115,0,0.18),transparent_60%),radial-gradient(900px_circle_at_85%_70%,rgba(255,0,107,0.12),transparent_55%),radial-gradient(800px_circle_at_50%_120%,rgba(96,165,250,0.10),transparent_55%)]" />
+    <section className="relative w-full p-3 sm:p-4">
+      {/* page bg */}
+      <div className="absolute inset-0 -z-10 bg-[#060B18]" />
+      <div className="absolute inset-0 -z-10 bg-[radial-gradient(1100px_circle_at_20%_20%,rgba(217,70,239,0.18),transparent_60%),radial-gradient(1100px_circle_at_85%_65%,rgba(34,211,238,0.14),transparent_55%),radial-gradient(900px_circle_at_50%_120%,rgba(99,102,241,0.12),transparent_55%)]" />
 
-      <div className="flex items-center justify-between p-4">
-        <Input
-          value={search}
-          setValue={setSearch}
-          extraClass="border !px-3 !w-75"
-          name="search"
-          placeholder="Qidirish"
-          type="text"
-        />
+      <div className="h-full overflow-hidden rounded-3xl ring-1 ring-white/10 shadow-[0_12px_55px_rgba(0,0,0,0.55)]">
+        {/* top neon line */}
+        <div className="h-px bg-[linear-gradient(to_right,transparent,rgba(34,211,238,0.9),rgba(217,70,239,0.85),rgba(99,102,241,0.55),transparent)]" />
 
-        <Button
-          onClick={() => navigate(PATH.categoriesCreate)}
-          showBg={false}
-          extraClass="!w-[100px]"
-          type="button"
-        >
-          Yaratish
-        </Button>
+        <div className="h-full bg-white/5 backdrop-blur-2xl flex flex-col">
+          {/* Header row (screenshotga yaqin) */}
+          <div className="p-3 sm:p-4">
+
+            {/* Search + create */}
+            <div className="mt-4 flex flex-col lg:flex-row lg:items-center gap-3 rounded-3xl bg-white/5 ring-1 ring-white/10 p-3 shadow-[0_10px_35px_rgba(0,0,0,0.35)]">
+              <div className="flex-1 flex flex-col sm:flex-row sm:items-center gap-3">
+                <Input
+                  value={search}
+                  onChange={changeInput}
+                  extraClass="!mt-0 !w-full sm:!max-w-[320px] !border !border-white/10 !bg-white/5 !text-white placeholder:!text-white/40 !px-4 !rounded-2xl"
+                  name="search"
+                  placeholder="Kategoriya qidirish..."
+                  type="text"
+                />
+              </div>
+
+              <Button onClick={() => navigete(PATH.categoriesCreate)} showBg={false} extraClass="!w-[120px]" type="button">Yaratish</Button>
+            </div>
+
+            {/* title */}
+            <div className="mt-4 flex items-end justify-between gap-4">
+              <div>
+                <p className="text-white text-lg font-semibold">Kategoriyalar</p>
+                <p className="text-white/50 text-xs sm:text-sm">
+                  Test data bilan ko‘rinishi
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Content */}
+          <div className="px-3 sm:px-4 pb-4 flex-1 overflow-auto">
+            {categories.length === 0 ? (
+              <div className="rounded-3xl bg-white/5 ring-1 ring-white/10 p-10 text-center text-white/60">
+                Kategoriya topilmadi
+              </div>
+            ) : (
+              <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
+                {filteredCategories.map((c: any) => (
+                  <CategoryCard key={c.id} item={c} />
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
       </div>
+    </section>
+  );
+};
 
-      <div className="relative px-5 group grid gap-5 grid-cols-4">
-        {loading ? (
-          <Loading
-            wrapperClass="!absolute !top-20 !left-0 !right-0"
-            borderClass="!w-15 !h-15"
-            spinClass="!w-3 !h-3"
-          />
-        ) : (
-          categories.map((item) => (
-            <CategoryCard
-              key={item.id}
-              item={item}
-              onDelete={() => handleDelete(item.id)} 
-            />
-          ))
-        )}
-      </div>
-    </div>
-  )
-}
+export default Category;
 
-export default Categories
+
+
+
+
+

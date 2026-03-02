@@ -21,7 +21,6 @@ const Select: FC<SelectType> = ({ extraClass, URL, customList, setValue, value, 
     useEffect(() => {
         if (URL) instance().get(URL).then(res => setList(res.data))
     }, [])
-console.log(list);
 
     return (
         <select value={value} onChange={handleSelectChange} className={`${extraClass} w-75 rounded-2xl bg-transparent border px-4 py-3.5 text-sm text-white/90 placeholder:text-white/35 outline-none`}>

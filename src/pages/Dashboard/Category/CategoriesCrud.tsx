@@ -1,5 +1,5 @@
 import { useEffect, useState, type SubmitEvent } from "react"
-import { Input, Loading, Select } from "../../../components"
+import { Input, Loading} from "../../../components"
 import Button from "../../../components/Button"
 import { useNavigate, useParams } from "react-router-dom"
 import { instance } from "../../../Hooks"
@@ -10,36 +10,28 @@ const CategoriesCrud = () => {
   const navigate = useNavigate()
   const [loading, setLoading] = useState(false)
 
-  const [title, setTitle] = useState("")
-  const [price, setPrice] = useState("")
-  const [description, setDescription] = useState("")
-  const [categoryId, setCategoryId] = useState<string | number>("")
-  const [images, setImages] = useState("")
+  const [name, setName] = useState("")
+  const [image, setImage] = useState("")
 
   function handleSubmit(evt: SubmitEvent<HTMLFormElement>) {
     evt.preventDefault()
     setLoading(true)
 
-    const data = { title, price, description, categoryId, images }
+    const data = { name,image }
 
-    CrudFn(
-      id,
-      "/categories", 
-      data,
+    CrudFn(id, "/categories", 
+    data,
       setLoading,
       navigate,
-      `Mahsulot ${id ? "tahrirlandi" : "qo'shildi"}`
+      `Categotiya ${id ? "tahrirlandi" : "qo'shildi"}`
     )
   }
 
   useEffect(() => {
     if (id) {
       instance().get(`/categories/${id}`).then(res => {
-        setTitle(res.data.title)
-        setPrice(res.data.price)
-        setDescription(res.data.description)
-        setCategoryId(res.data.categoryId)
-        setImages(res.data.images)
+        setName(res.data.name)
+        setImage(res.data.image)
       })
     }
   }, [id])
@@ -47,7 +39,7 @@ const CategoriesCrud = () => {
   return (
     <form onSubmit={handleSubmit} autoComplete="off" className="p-5">
       <div className="flex items-center justify-between">
-        <h1 className="text-white font-bold text-[25px]">{id ? "Mahsulotni tahrirlash" : "Mahsulot qo'shish"}</h1>
+        <h1 className="text-white font-bold text-[25px]">{id ? "Category tahrirlash" : "Category qo'shish"}</h1>
         <Button extraClass="!w-[100px] !h-[48px] cursor-pointer" type="submit">
           {loading ? <Loading /> : "Saqlash"}
         </Button>
@@ -55,31 +47,16 @@ const CategoriesCrud = () => {
 
       <div className="flex justify-center gap-10 mt-6">
         <div className="w-[45%] flex flex-col gap-5">
-          <label>
-            <span className="text-white pl-2">Mahsulot nomi:</span>
-            <Input value={title} setValue={setTitle} extraClass="border pl-3" type="text" name="title" placeholder="Mahsulot nomini kiriting" />
-          </label>
-
-          <label>
-            <span className="text-white pl-2">Mahsulot narxi:</span>
-            <Input value={price} setValue={setPrice} extraClass="border pl-3" type="text" name="price" placeholder="Mahsulot narxini kiriting" />
-          </label>
-
-          <label>
-            <span className="text-white pl-2">Mahsulot haqida:</span>
-            <Input value={description} setValue={setDescription} extraClass="border pl-3" type="text" name="description" placeholder="Mahsulot haqida..." />
+          <label className="flex items-center gap-4">
+            <span className="text-white pl-2">Category nomi:</span>
+            <Input value={name} setValue={setName} extraClass="w-[400px] border pl-3" type="text" name="title" placeholder="Category nomini kiriting" required />
           </label>
         </div>
 
         <div className="w-[45%] flex flex-col gap-5">
-          <label>
-            <span className="text-white pl-2">Kategoriya tanlang:</span>
-            <Select extraClass="w-full !py-[13px]" value={categoryId} setValue={setCategoryId} URL="/categories" />
-          </label>
-
-          <label>
-            <span className="text-white pl-2">Mahsulot rasmi:</span>
-            <Input value={images} setValue={setImages} extraClass="border pl-3" type="text" name="images" placeholder="Mahsulot rasmini kiriting" />
+          <label className="flex items-center gap-4">
+            <span className="text-white pl-2">Category rasmi:</span>
+            <Input value={image} setValue={setImage} extraClass="w-[400px] border pl-3" type="text" name="images" placeholder="Category rasmini kiriting" required />
           </label>
         </div>
       </div>

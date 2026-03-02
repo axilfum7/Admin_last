@@ -52,7 +52,7 @@ const Login = () => {
                     <div className="pointer-events-none absolute inset-y-0 left-4 flex items-center">
                       <EmailIcon />
                     </div>
-                    <Input extraClass="w-full pl-10" type="email" name="email" placeholder="misol@gmail.com "/>
+                    <Input extraClass="w-full pl-10" type="email" name="email" placeholder="misol@gmail.com " required />
                     <div className="absolute inset-x-0 bottom-0 h-px bg-[linear-gradient(to_right,transparent,rgba(255,106,0,0.75),rgba(255,46,81,0.65),transparent)] opacity-0 transition group-focus-within:opacity-100" />
                   </div>
                 </div>
@@ -63,7 +63,7 @@ const Login = () => {
                     <div className="pointer-events-none absolute inset-y-0 left-4 flex items-center">
                       <PasswordIcon />
                     </div>
-                    <Input extraClass="w-full pl-10" type="password" placeholder="••••••••" name="password"/>
+                    <Input extraClass="w-full pl-10" type="password" placeholder="••••••••" name="password" required />
                     <div className="absolute inset-x-0 bottom-0 h-px bg-[linear-gradient(to_right,transparent,rgba(255,106,0,0.75),rgba(255,46,81,0.65),transparent)] opacity-0 transition group-focus-within:opacity-100" />
                   </div>
                 </div>

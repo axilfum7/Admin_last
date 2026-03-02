@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
-import { FiTrash2, FiUser, FiShield, FiHash, FiMail, FiImage } from "react-icons/fi";
+import { FiTrash2, FiUser, FiMail,} from "react-icons/fi";
 import { useNavigate, useParams } from "react-router-dom";
 import { DeleteFn, GetById } from "../../../services";
 import type { UserType } from "../../../@types";
 import { Button, Loading, MiniButton, Modal } from "../../../components";
+import { Pencil } from "lucide-react";
 
 const UserMore = () => {
   const [user, setUser] = useState<UserType | null>(null);
@@ -30,31 +31,30 @@ const UserMore = () => {
           <div className="mb-4 rounded-3xl border border-white/10 bg-white/5 px-4 py-4 flex flex-col md:flex-row md:justify-between md:items-center gap-4">
             <div>
               <p className="text-[11px] tracking-[0.22em] uppercase text-white/40">User Details</p>
-              <h1 className="mt-1 text-2xl md:text-4xl font-semibold text-white">{user?.fullname || "Loading..."}</h1>
+              <h1 className="mt-1 text-2xl md:text-4xl font-semibold text-white">{user?.name || "Loading..."}</h1>
               <p className="mt-1 text-sm text-white/45">Foydalanuvchi haqida ma’lumot</p>
             </div>
             <div className="flex gap-3 items-center">
-              <MiniButton type="button" onClick={() => setDelModal(true)} extraClass="flex items-center w-12 h-12 rounded-2xl bg-white/5 ring-1 ring-white/10 text-white/70 hover:bg-white/10 hover:text-white transition">
+              <MiniButton type="button" onClick={() => setDelModal(true)} extraClass="flex items-center w-10 h-10 rounded-2xl bg-white/5 ring-1 ring-white/10 text-white/70 hover:bg-white/10 hover:text-white transition">
                 <FiTrash2 />
               </MiniButton>
-              <Button type="button" onClick={() => navigate(`/users/${id}/update`)} extraClass="inline-flex items-center gap-2 h-12 px-6 rounded-2xl text-white font-semibold bg-gradient-to-r from-cyan-400 via-indigo-500 to-pink-500 hover:opacity-90 transition shadow-[0_10px_30px_rgba(99,102,241,.2)]">Tahrirlash</Button>
+              <Button
+                onClick={() => navigate("update")}
+                type="button"
+                extraClass="!mt-0 !h-[44px] rounded-2xl !px-4 !text-sm !font-semibold border border-white/10 bg-[linear-gradient(135deg,rgba(255,106,0,0.85),rgba(255,46,81,0.75))] shadow-[0_18px_50px_rgba(255,46,81,0.12)] transition hover:brightness-110 active:scale-[0.98]" >
+                <span className="inline-flex items-center gap-2">
+                  <Pencil size={16} />
+                  Tahrirlash
+                </span>
+              </Button>
             </div>
           </div>
 
           {/* Content */}
           <div className="grid grid-cols-1 gap-4 xl:grid-cols-[1.55fr_1fr]">
             {/* LEFT: Avatar Preview */}
-            <div className="relative h-64 overflow-hidden rounded-3xl border border-white/10 bg-white/5">
-              {user?.image && <img src={user.image} alt={user.fullname || "avatar"} className="absolute inset-0 w-full h-full object-cover" />}
-              <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(11,18,32,0.25),rgba(11,18,32,0.65))]" />
-              <div className="absolute left-4 top-4 flex flex-wrap gap-2">
-                <span className="inline-flex items-center gap-2 rounded-xl bg-white/10 px-3 py-1.5 text-xs text-white/80 ring-1 ring-white/10 backdrop-blur">
-                  <FiHash className="text-[12px]" /> ID: {user?.id ?? "-"}
-                </span>
-                <span className="inline-flex items-center gap-2 rounded-xl bg-white/10 px-3 py-1.5 text-xs text-white/80 ring-1 ring-white/10 backdrop-blur">
-                  <FiShield className="text-[12px]" /> {user?.role || "-"}
-                </span>
-              </div>
+            <div className="relative  overflow-hidden rounded-3xl border border-white/10 bg-white/5">
+              {user?.avatar && <img src={user.avatar} alt={user.name || "avatar"} className="absolute inset-0 w-full h-full object-cover" />}
             </div>
 
             {/* RIGHT: Info */}
@@ -68,7 +68,7 @@ const UserMore = () => {
                   </div>
                   <div className="rounded-2xl border border-white/10 bg-white/3 p-4">
                     <div className="flex items-center gap-2 text-white/55 text-xs"><FiUser /> Nomi</div>
-                    <p className="mt-2 text-xl font-semibold text-white">{user?.fullname || "-"}</p>
+                    <p className="mt-2 text-xl font-semibold text-white">{user?.name || "-"}</p>
                   </div>
                   <div className="rounded-2xl border border-white/10 bg-white/3 p-4">
                     <div className="flex items-center gap-2 text-white/55 text-xs"><FiMail /> Email</div>

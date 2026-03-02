@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router-dom"
 import type { ProductType } from "../@types"
-import { FiEdit2, FiTrash2 } from "react-icons/fi"
 
 interface Props {
   item: ProductType
@@ -39,17 +38,6 @@ const ProductCard = ({ item }: Props) => {
             {item.category?.name}
           </span>
         </div>
-      </div>
-
-      {/* Actions */}
-      <div className="absolute top-3 right-3 flex gap-2 opacity-0 group-hover:opacity-100 transition">
-        <button className="p-2 rounded-lg bg-linear-to-r from-red-500 to-pink-500 text-white hover:brightness-110 transition">
-          <FiEdit2 size={16} />
-        </button>
-
-        <button className="p-2 rounded-lg bg-linear-to-r from-red-500 to-pink-500 text-white hover:brightness-110 transition">
-          <FiTrash2 size={16} />
-        </button>
       </div>
     </div>
   )

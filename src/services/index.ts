@@ -34,11 +34,11 @@ export const DeleteFn = (URL:string, setLoading:Dispatch<SetStateAction<boolean>
       setTimeout(() => navigate(-1), 1000)
     })
 }
-export const CrudFn = (id:string | undefined, URL:string, data:any, setLoading:Dispatch<SetStateAction<boolean>>, navigate:NavigateFunction, toastTitle:string) => {
-  instance()[id ? "put" : "post"](`${URL}/${id ? id : ""}`, data).then(() => {
-     toast.success(toastTitle)
-     setLoading(false)
-     setTimeout(() => navigate(-1), 1000)
+export const CrudFn = (id:string | undefined, URL:string,data:any,setLoading:Dispatch<SetStateAction<boolean>>, navigate:NavigateFunction,toastTitle:string) => {
+  instance()[id ? "put" : "post"](URL, data).then(() => {
+    toast.success(toastTitle);
+    setLoading(false)
+    setTimeout(() => navigate(-1), 1000)
   })
 }
 
